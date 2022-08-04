@@ -9,11 +9,63 @@ function App() {
   const [input, setInput] = useState("");
 
   const apiCaller = async () => {
-    const response = await axios.get(
-      "https://corona.lmao.ninja/v2/countries?yesterday&sort=cases"
-    );
-    console.log("response", response.data);
-    setData(response.data);
+    try {
+      const response = await axios.get(
+        "https://corona.lmao.ninja/v2/countries?yesterday&sort=cases"
+      );
+      console.log("response", response.data);
+      setData(response.data);
+    } catch (error) {
+      const backup = [
+        {
+          updated: 1587140875474,
+          country: "Italy",
+          countryInfo: {
+            _id: 380,
+            iso2: "IT",
+            iso3: "ITA",
+            lat: 42.8333,
+            long: 12.8333,
+            flag: "https://raw.githubusercontent.com/NovelCOVID/API/master/assets/flags/it.png",
+          },
+          cases: 168941,
+          todayCases: 3786,
+          deaths: 22170,
+          todayDeaths: 525,
+          recovered: 40164,
+          active: 106607,
+          critical: 2936,
+          casesPerOneMillion: 2794,
+          deathsPerOneMillion: 367,
+          tests: 1178403,
+          testsPerOneMillion: 19490,
+        },
+        {
+          updated: 1587140875479,
+          country: "Brazil",
+          countryInfo: {
+            _id: 76,
+            iso2: "BR",
+            iso3: "BRA",
+            lat: -10,
+            long: -55,
+            flag: "https://raw.githubusercontent.com/NovelCOVID/API/master/assets/flags/br.png",
+          },
+          cases: 30683,
+          todayCases: 2073,
+          deaths: 1947,
+          todayDeaths: 190,
+          recovered: 14026,
+          active: 14710,
+          critical: 6634,
+          casesPerOneMillion: 144,
+          deathsPerOneMillion: 9,
+          tests: 62985,
+          testsPerOneMillion: 296,
+        },
+      ];
+      setData(backup);
+    }
   };
 
   // const date = new Date(1646653060913 * 1000);
